@@ -38,16 +38,19 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 fi 
 # Install optional packages
-# Flatpak (install only after running `lxc config penguin set security.nesting true` in vsh termina (crosh/crostini)
-if [[ $@ =~ .*"flatpak".* ]]
-then
-sudo apt install flatpak -y
-flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-fi
 # Gnome Software
 if [[ $@ =~ .*"gnome-software".* ]]
 then
 sudo apt install gnome-software gnome-packagekit -y
+fi
+# Flatpak (install only after running `lxc config penguin set security.nesting true` in vsh termina (crosh/crostini)
+if [[ $@ =~ .*"flatpak".* ]]
+then
+sudo apt install flatpak -y
+if [[ $@ =~ .*"gnome-software".* ]]; then
+	sudo apt install gnome-software-plugin-flatpak -y
+fi
+flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 fi
 
 # Update the system
