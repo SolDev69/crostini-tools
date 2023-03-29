@@ -12,7 +12,7 @@ sudo apt upgrade -y
 
 # Install useful packages
 sudo apt install lsb-release neofetch command-not-found nano -y
-if ! [[ $@ =~ .*"no-install-repos".* || $@ =~ .*"dont-install-repos".* ]]; then
+if ! [[ $@ =~ .*"no-install-repos".* || $@ =~ .*"dont-install-repos".* || $@ =~ .*"no-setup-repos".* ]]; then
 # Install useful repositories
 # Sublime
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
