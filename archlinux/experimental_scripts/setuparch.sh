@@ -5,7 +5,8 @@ then
 echo "This script will setup Arch Linux on Crostini."
 read something
 export DEFAULT_USER=$( grep 1000:1000 /etc/passwd|cut -d':' -f1 )
-if [ ! $DEFAULT_USER ]
+echo $DEFAULT_USER
+if [ $DEFAULT_USER ]
 then
 echo "Please enter in the user name you wish to use."
 read NEW_USER
@@ -27,7 +28,7 @@ systemctl enable dhclient@eth0
 systemctl start dhclient@eth0
 echo "Please exit and log in to your new user from `lxc console $HOSTNAME`"
 else
-echo "No user detected! This normally means you installed Arch from lxc, which currently isn't supported. I will likely update this script with support soon, but for now please delete this container and from a new crosh shell run `vmc container termina $HOSTNAME https://us.lxd.images.canonical.com/ archlinux/current`"
+echo "No user detected! This normally means you installed Arch from lxc, which currently isn't supported. I will likely update this script with support soon, but for now please delete this container and from a new crosh shell run: vmc container termina $HOSTNAME https://us.lxd.images.canonical.com/ archlinux/current"
 fi
 fi
 
