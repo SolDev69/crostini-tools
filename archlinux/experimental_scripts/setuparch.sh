@@ -3,7 +3,7 @@ USER_ID=$( id -u )
 if [ $USER_ID == 0 ]
 then
 echo "This script will setup Arch Linux on Crostini."
-read
+read something
 export DEFAULT_USER=$( grep 1000:1000 /etc/passwd|cut -d':' -f1 )
 if [ ! $DEFAULT_USER ]
 then
