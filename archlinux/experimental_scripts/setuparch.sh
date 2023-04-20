@@ -28,7 +28,8 @@ systemctl enable dhclient@eth0
 systemctl start dhclient@eth0
 echo "Please exit and log in to your new user from `lxc console $HOSTNAME`"
 else
-echo "No user detected! This normally means you installed Arch from lxc, which currently isn't supported. I will likely update this script with support soon, but for now please delete this container and from a new crosh shell run: vmc container termina $HOSTNAME https://us.lxd.images.canonical.com/ archlinux/current"
+echo "No user detected! This normally means you installed Arch from lxc."
+echo "Please shut down your crostini install. Make sure your container is named 'penguin' and open the container from the Terminal app. When that gets to 'Starting Linux Container' close the terminal app and rerun this script as root."
 fi
 fi
 
