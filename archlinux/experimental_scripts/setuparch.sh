@@ -38,12 +38,6 @@ then
 echo "Continuing setup..."
 git clone https://aur.archlinux.org/cros-container-guest-tools-git.git
 cd cros-container-guest-tools-git
-echo "[Unit]
-After=network-online.target
-Wants=network-online.target
-ConditionPathExists=/dev/.container_token" > cros-garcon-conditions.conf
-DEFAULT_HASH=d326cd35dcf150f9f9c8c7d6336425ec08ad2433
-sed -i "s/$DEFAULT_HASH/SKIP/gi" PKGBUILD
 makepkg -sfi
 systemctl --user enable sommelier@0
 systemctl --user enable sommelier@1
